@@ -1,0 +1,42 @@
+[
+  {
+    "tipo": "MAIS PEDIDO",
+    "icone": "bi-fire",
+    "titulo": "Smash da Dúvida",
+    "descricao": "O campeão de vendas: dois blends de 90g na brasa, cheddar duplo derretido e nosso molho secreto no brioche.",
+    "destaque": "R$ 28,90",
+    "acao": "cardapio.html",
+    "textoBotao": "Pedir Agora",
+    "ehCupom": false
+  },
+  {
+    "tipo": "LANÇAMENTO",
+    "icone": "bi-stars",
+    "titulo": "Combo Parafuso & Fogo",
+    "descricao": "Bacon Dilema + porção individual da famosa Batata Parafuso temperada na páprica + refrigerante gelado.",
+    "destaque": "R$ 46,90",
+    "acao": "cardapio.html",
+    "textoBotao": "Conferir no Cardápio",
+    "ehCupom": false
+  },
+  {
+    "tipo": "CUPOM DE DESCONTO",
+    "icone": "bi-ticket-perforated-fill",
+    "titulo": "15% OFF na Primeira Dúvida",
+    "descricao": "Use o código abaixo no fechamento do seu pedido online e garanta desconto imediato em qualquer lanche.",
+    "destaque": "DUVIDA15",
+    "acao": "DUVIDA15",
+    "textoBotao": "Copiar Cupom",
+    "ehCupom": true
+  },
+  {
+    "tipo": "PROMOÇÃO DA SEMANA",
+    "icone": "bi-lightning-charge-fill",
+    "titulo": "Quarta da Confusão",
+    "descricao": "Na compra de qualquer hambúrguer duplo, o Shake da Confusão sai pela metade do preço.",
+    "destaque": "50% OFF NO SHAKE",
+    "acao": "cardapio.html",
+    "textoBotao": "Aproveitar",
+    "ehCupom": false
+  }
+]

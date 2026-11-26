@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio | An?Burgueria</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="faixaFogo">
+        <div class="textoCorrendo">
+            <i class="bi bi-fire"></i> BRASA ACESA DAS 18H ÀS 00H &nbsp;&bull;&nbsp; USE O CUPOM <strong>DUVIDA15</strong> PARA 15% OFF NO PRIMEIRO PEDIDO &nbsp;&bull;&nbsp; R. DA DÚVIDA - BARRA SECA, SÃO FRANCISCO DE ITABAPOANA - RJ <i class="bi bi-fire"></i>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark barraNavegacao sticky-top">
+        <div class="container">
+            <a class="navbar-brand marcaTopo" href="index.html">
+                <img src="img/logoVazada.png" alt="Logo An?Burgueria" height="38" class="logoInterrogacao">
+                An?Burgueria
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navegacaoTopo">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navegacaoTopo">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link linkMenu" href="index.html">Início</a></li>
+                    <li class="nav-item"><a class="nav-link linkMenu ativo" href="cardapio.html">Cardápio</a></li>
+                    <li class="nav-item"><a class="nav-link linkMenu" href="sobre.html">Sobre & Contato</a></li>
+                </ul>
+                <button class="btn botaoAmarelo botaoSacolaTopo" data-bs-toggle="offcanvas" data-bs-target="#abaCarrinho">
+                    <i class="bi bi-cart3"></i> Pedido (<span id="qtdCarrinho">0</span>)
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container secaoPadrao">
+        <div id="avisoForaHorario" class="avisoLojaFechada oculto">
+            <i class="bi bi-clock-history iconeLojaFechada"></i>
+            <div>
+                <h5 class="fonteTitulo textoAmarelo mb-1">ESTAMOS FECHADOS NO MOMENTO</h5>
+                <p class="mb-0 small">Não estamos aceitando pedidos agora. Nosso horário de funcionamento é de <strong>Terça a Quinta das 18h às 23h</strong> e <strong>Sexta a Domingo das 18h às 00h</strong> (fechado às segundas-feiras).</p>
+            </div>
+        </div>
+
+        <div class="cabecalhoSecao">
+            <span class="etiquetaSecao"><i class="bi bi-fire"></i> Escolha sem medo</span>
+            <h1 class="tituloSecao">NOSSO <span class="textoAmarelo">CARDÁPIO</span></h1>
+            <p class="textoSecundario">Clique em adicionar para turbinar e montar o seu pedido na sacola</p>
+            
+            <div class="filtrosCategoria" role="group">
+                <button type="button" class="btn botaoCategoria ativo" onclick="mudarCategoria('Todos', this)">Todos</button>
+                <button type="button" class="btn botaoCategoria" onclick="mudarCategoria('Hambúrgueres', this)">Hambúrgueres</button>
+                <button type="button" class="btn botaoCategoria" onclick="mudarCategoria('Acompanhamentos', this)">Acompanhamentos</button>
+                <button type="button" class="btn botaoCategoria" onclick="mudarCategoria('Bebidas', this)">Bebidas</button>
+            </div>
+        </div>
+
+        <div class="row g-4" id="gradeProdutos"></div>
+    </main>
+
+    <div class="offcanvas offcanvas-end painelSacola" tabindex="-1" id="abaCarrinho">
+        <div class="offcanvas-header cabecalhoSacola">
+            <h5 class="offcanvas-title fonteTitulo textoAmarelo"><i class="bi bi-bag-check"></i> SEU PEDIDO</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body corpoSacola">
+            <ul class="listaItensSacola" id="listaSacola">
+                <li class="sacolaVazia">Seu carrinho está vazio.</li>
+            </ul>
+            <div class="rodapeSacola">
+                <div class="linhaTotalSacola">
+                    <span>Total:</span>
+                    <span class="textoAmarelo" id="valorTotal">R$ 0,00</span>
+                </div>
+                <button class="btn botaoVermelho botaoLargo" id="botaoAbrirCheckout" onclick="abrirFechamentoPedido()">
+                    <i class="bi bi-fire"></i> Finalizar Pedido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalAdicionais" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content janelaModal">
+                <div class="modal-header cabecalhoModal">
+                    <div>
+                        <span class="badge etiquetaVermelha mb-1">TURBINE SEU PEDIDO</span>
+                        <h5 class="tituloModalPrincipal" id="tituloItemModal"></h5>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="small textoSecundario mb-3" id="descricaoItemModal"></p>
+
+                    <div id="areaOpcoesExtras">
+                        <h6 class="fonteTitulo text-uppercase mb-2">Escolha os Adicionais:</h6>
+                        <div class="mb-3" id="listaAdicionaisModal">
+                            <label class="opcaoAdicional">
+                                <div>
+                                    <input class="form-check-input me-2 opcaoExtra" type="checkbox" value="Blend Bovino Extra 90g" data-preco="8.00" onchange="recalcularTotalModal()">
+                                    Blend Bovino Extra (90g)
+                                </div>
+                                <span class="valorAdicional">+ R$ 8,00</span>
+                            </label>
+                            <label class="opcaoAdicional">
+                                <div>
+                                    <input class="form-check-input me-2 opcaoExtra" type="checkbox" value="Bacon Crocante Extra" data-preco="5.50" onchange="recalcularTotalModal()">
+                                    Bacon Crocante Extra
+                                </div>
+                                <span class="valorAdicional">+ R$ 5,50</span>
+                            </label>
+                            <label class="opcaoAdicional">
+                                <div>
+                                    <input class="form-check-input me-2 opcaoExtra" type="checkbox" value="Cheddar Cremoso Extra" data-preco="4.50" onchange="recalcularTotalModal()">
+                                    Cheddar Cremoso Extra
+                                </div>
+                                <span class="valorAdicional">+ R$ 4,50</span>
+                            </label>
+                            <label class="opcaoAdicional">
+                                <div>
+                                    <input class="form-check-input me-2 opcaoExtra" type="checkbox" value="Cebola Caramelizada" data-preco="4.00" onchange="recalcularTotalModal()">
+                                    Cebola Caramelizada
+                                </div>
+                                <span class="valorAdicional">+ R$ 4,00</span>
+                            </label>
+                            <label class="opcaoAdicional">
+                                <div>
+                                    <input class="form-check-input me-2 opcaoExtra" type="checkbox" value="Maionese Duvidosa (Pote)" data-preco="3.50" onchange="recalcularTotalModal()">
+                                    Maionese Duvidosa (Pote)
+                                </div>
+                                <span class="valorAdicional">+ R$ 3,50</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="campoObservacao" class="form-label fonteTitulo">Observações para a cozinha:</label>
+                        <textarea class="form-control campoEscuro" id="campoObservacao" rows="2" placeholder="Ex: Tirar cebola, ponto da carne bem passado, sem picles..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer rodapeModal">
+                    <div>
+                        <small class="textoSecundario d-block">Valor do Item:</small>
+                        <span class="precoModalDestaque" id="precoItemModal">R$ 0,00</span>
+                    </div>
+                    <button type="button" class="btn botaoVermelho" onclick="confirmarAdicaoSacola()">
+                        <i class="bi bi-bag-plus-fill"></i> Adicionar ao Pedido
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalFechamento" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content janelaModal">
+                <div class="modal-header cabecalhoModal">
+                    <h5 class="tituloModalPrincipal">
+                        <i class="bi bi-fire"></i> FINALIZAR COMPRA
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="telaFormularioCheckout">
+                        <form id="formularioCheckout" novalidate>
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-6">
+                                    <label for="clienteNome" class="form-label">Seu Nome Completo *</label>
+                                    <input type="text" class="form-control campoEscuro" id="clienteNome" placeholder="Digite seu nome" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="clienteTelefone" class="form-label">WhatsApp / Telefone *</label>
+                                    <input type="tel" class="form-control campoEscuro" id="clienteTelefone" placeholder="(22) 99999-9999" required>
+                                </div>
+                            </div>
+
+                            <h6 class="fonteTitulo textoAmarelo mb-2">COMO DESEJA RECEBER? *</h6>
+                            <div class="row g-2 mb-3">
+                                <div class="col-6">
+                                    <input type="radio" class="btn-check" name="tipoEntrega" id="opcaoEntrega" value="Entrega" checked onchange="alternarModoEntrega()">
+                                    <label class="btn btn-outline-warning botaoLargo fw-bold" for="opcaoEntrega">
+                                        <i class="bi bi-bicycle"></i> Entrega (Delivery)
+                                    </label>
+                                </div>
+                                <div class="col-6">
+                                    <input type="radio" class="btn-check" name="tipoEntrega" id="opcaoRetirada" value="Retirada" onchange="alternarModoEntrega()">
+                                    <label class="btn btn-outline-warning botaoLargo fw-bold" for="opcaoRetirada">
+                                        <i class="bi bi-shop"></i> Retirar na Loja
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div id="blocoEnderecoEntrega" class="blocoEndereco">
+                                <div class="cabecalhoEndereco">
+                                    <span class="small fw-bold textoAmarelo"><i class="bi bi-geo-alt-fill"></i> DIGITE SEU CEP PARA PREENCHER AUTOMATICAMENTE</span>
+                                    <div class="acoesCep">
+                                        <span class="badge bg-secondary" id="statusCep">Raio: São Francisco de Itabapoana</span>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="limparDadosSalvos()">Limpar</button>
+                                    </div>
+                                </div>
+                                <div class="row g-2">
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control campoEscuro" id="endCep" maxlength="9" placeholder="CEP (ex: 28230-000) *" oninput="mascaraEBuscaCep(this)" required>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control campoEscuro" id="endRua" placeholder="Rua / Logradouro *" required>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <input type="text" class="form-control campoEscuro" id="endBairro" placeholder="Bairro *" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control campoEscuro" id="endCidade" placeholder="Cidade - UF" readonly>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control campoEscuro" id="endNumero" placeholder="Número *" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" class="form-control campoEscuro" id="endReferencia" placeholder="Ponto de referência / Complemento">
+                                    </div>
+                                </div>
+                                <div id="alertaDistanciaEntrega" class="oculto"></div>
+                            </div>
+
+                            <div id="blocoInfoRetirada" class="caixaRetirada oculto">
+                                <div class="conteudoRetirada">
+                                    <i class="bi bi-shop iconeLojaRetirada"></i>
+                                    <div>
+                                        <h6 class="fonteTitulo textoAmarelo mb-1">RETIRADA NO BALCÃO</h6>
+                                        <p class="mb-2 small"><strong>Endereço:</strong> R. da Dúvida - Barra Seca, São Francisco de Itabapoana - RJ</p>
+                                        <span class="seloPrazoRetirada">Tempo médio de preparo: 25 minutos</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h6 class="fonteTitulo textoAmarelo mb-2">FORMA DE PAGAMENTO *</h6>
+                            <div class="row g-2 mb-3">
+                                <div class="col-md-4">
+                                    <select class="form-select campoEscuro" id="formaPagamento" onchange="verificarTroco()" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="PIX ou Cartão (Crédito/Débito)">PIX ou Cartão (Crédito/Débito)</option>
+                                        <option value="Dinheiro">Dinheiro</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 oculto" id="campoTrocoBox">
+                                    <input type="text" class="form-control campoEscuro" id="valorTroco" placeholder="Troco para quanto?">
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control campoEscuro" id="cupomDesconto" placeholder="Cupom (ex: DUVIDA15)" oninput="atualizarResumoCheckout()">
+                                </div>
+                            </div>
+
+                            <div id="erroValidacao" class="alertaErro oculto"></div>
+
+                            <div class="caixaResumoFinal">
+                                <div>
+                                    <span class="textoSecundario small d-block">Total a pagar na entrega:</span>
+                                    <span class="precoModalDestaque" id="totalFinalCheckout">R$ 0,00</span>
+                                </div>
+                                <button type="submit" class="btn botaoVermelho botaoFinalizarCompra">
+                                    <i class="bi bi-check-circle-fill"></i> Finalizar Compra
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="telaSucessoCheckout" class="telaConfirmacao oculto">
+                        <i class="bi bi-check-circle-fill iconeConfirmacao"></i>
+                        <h3 class="fonteTitulo textoAmarelo mt-3">PEDIDO CONFIRMADO E ENVIADO PARA A BRASA!</h3>
+                        <p class="mb-3" id="resumoClienteConfirmado"></p>
+                        <div class="avisoPagamentoEntrega">
+                            <i class="bi bi-cash-coin"></i> ATENÇÃO: O pagamento deverá ser feito diretamente na entrega (ou na retirada no balcão).
+                        </div>
+                        <p class="small textoSecundario mb-4" id="detalhesEntregaConfirmada"></p>
+                        <button type="button" class="btn botaoAmarelo" data-bs-dismiss="modal">Voltar ao Cardápio</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container position-fixed bottom-0 start-0 p-3">
+        <div id="caixaFrase" class="toast align-items-center avisoFlutuante" role="alert">
+            <div class="d-flex">
+                <div class="toast-body conteudoAvisoFlutuante">
+                    <img src="img/logoVazada.png" alt="Logo" height="24">
+                    <span id="mensagemAlerta"></span>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="rodapeSite">
+        <div class="container">
+            <img src="img/logoVazada.png" alt="Logo An?Burgueria" height="45" class="mb-2">
+            <p class="mb-1 fw-bold textoAmarelo fonteTitulo">AN?BURGUERIA</p>
+            <p class="small textoSecundario mb-0">R. da Dúvida - Barra Seca, São Francisco de Itabapoana - RJ</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

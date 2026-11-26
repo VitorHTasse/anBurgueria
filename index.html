@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An?Burgueria | Hamburgueria Artesanal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="faixaFogo">
+        <div class="textoCorrendo">
+            <i class="bi bi-fire"></i> BRASA ACESA DAS 18H ÀS 00H &nbsp;&bull;&nbsp; USE O CUPOM <strong>DUVIDA15</strong> PARA 15% OFF NO PRIMEIRO PEDIDO &nbsp;&bull;&nbsp; R. DA DÚVIDA - BARRA SECA, SÃO FRANCISCO DE ITABAPOANA - RJ <i class="bi bi-fire"></i>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark barraNavegacao sticky-top">
+        <div class="container">
+            <a class="navbar-brand marcaTopo" href="index.html">
+                <img src="img/logoVazada.png" alt="Logo An?Burgueria" height="38" class="logoInterrogacao">
+                An?Burgueria
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navegacaoTopo">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navegacaoTopo">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link linkMenu ativo" href="index.html">Início</a></li>
+                    <li class="nav-item"><a class="nav-link linkMenu" href="cardapio.html">Cardápio</a></li>
+                    <li class="nav-item"><a class="nav-link linkMenu" href="sobre.html">Sobre & Contato</a></li>
+                </ul>
+                <a href="cardapio.html" class="btn botaoVermelho botaoSacolaTopo">
+                    <i class="bi bi-fire"></i> Fazer Pedido
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="capaInicio">
+        <div class="brasasFundo">
+            <span class="brasa"></span>
+            <span class="brasa"></span>
+            <span class="brasa"></span>
+            <span class="brasa"></span>
+            <span class="brasa"></span>
+            <span class="brasa"></span>
+        </div>
+        <div class="container conteudoCapa">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7">
+                    <span class="seloDestaqueTopo">
+                        <i class="bi bi-fire"></i> FOGO ALTO & CARNE FRESCA
+                    </span>
+                    <h1 class="tituloCapa">
+                        BATEU A DÚVIDA DO QUE COMER <span class="textoAmarelo">HOJE?</span>
+                    </h1>
+                    <p class="subtituloCapa">
+                        Blends artesanais grelhados na brasa de verdade, queijo derretendo na chapa e combinações que acabam com qualquer indecisão na primeira mordida.
+                    </p>
+                    <div class="grupoBotoesCapa">
+                        <a href="cardapio.html" class="btn botaoAmarelo pulsarFogo btn-lg">
+                            <i class="bi bi-bag-fill"></i> Ver Cardápio Completo
+                        </a>
+                        <a href="#destaquesCasa" class="btn btn-outline-light btn-lg">
+                            Promoções & Cupons
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-5 text-center">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=80" alt="Hambúrguer na brasa" class="img-fluid imagemCapa">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="barraEndereco">
+        <div class="container linhaEndereco">
+            <div class="blocoInfoLocal">
+                <div class="iconeLocalizacao">
+                    <i class="bi bi-geo-alt-fill"></i>
+                </div>
+                <div>
+                    <span class="seloAvisoLocal">VENHA NOS VISITAR OU PEÇA DELIVERY</span>
+                    <h6 class="mb-0 fw-bold">R. da Dúvida - Barra Seca, São Francisco de Itabapoana - RJ</h6>
+                    <small class="textoSecundario">Terça a Quinta: 18h às 23h &bull; Sexta a Domingo: 18h às 00h</small>
+                </div>
+            </div>
+            <a href="sobre.html" class="btn btn-outline-warning btn-sm fw-bold">
+                <i class="bi bi-map"></i> Ver Mapa & Contato
+            </a>
+        </div>
+    </section>
+
+    <section id="destaquesCasa" class="secaoPadrao">
+        <div class="container">
+            <div class="cabecalhoSecao">
+                <span class="etiquetaSecao"><i class="bi bi-fire"></i> Direto da Chapa</span>
+                <h2 class="tituloSecao">DESTAQUES, PROMOÇÕES & <span class="textoAmarelo">CUPONS</span></h2>
+                <p class="textoSecundario">Os mais pedidos da semana, novidades do cardápio e vantagens exclusivas</p>
+            </div>
+
+            <div class="row g-4" id="gradeDestaques"></div>
+        </div>
+    </section>
+
+    <section class="secaoPadrao">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="caixaDiferencial">
+                        <i class="bi bi-fire iconeDiferencial"></i>
+                        <h4 class="fonteTitulo textoAmarelo">Brasa de Verdade</h4>
+                        <p class="textoSecundario mb-0">Grelhados no fogo alto para criar aquela crosta defumada por fora e manter a suculência por dentro.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="caixaDiferencial">
+                        <i class="bi bi-award iconeDiferencial"></i>
+                        <h4 class="fonteTitulo textoAmarelo">Receitas Autorais</h4>
+                        <p class="textoSecundario mb-0">Molhos preparados diariamente na nossa cozinha e blends moídos frescos todos os dias.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="caixaDiferencial">
+                        <i class="bi bi-bicycle iconeDiferencial"></i>
+                        <h4 class="fonteTitulo textoAmarelo">Entrega Quente</h4>
+                        <p class="textoSecundario mb-0">Embalagem térmica reforçada para o seu pedido chegar perfeito em qualquer ponto de Barra Seca.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="toast-container position-fixed bottom-0 start-0 p-3">
+        <div id="caixaFrase" class="toast align-items-center avisoFlutuante" role="alert">
+            <div class="d-flex">
+                <div class="toast-body conteudoAvisoFlutuante">
+                    <img src="img/logoVazada.png" alt="Logo" height="24">
+                    <span id="mensagemAlerta"></span>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="rodapeSite">
+        <div class="container">
+            <img src="img/logoVazada.png" alt="Logo An?Burgueria" height="45" class="mb-2">
+            <p class="mb-1 fw-bold textoAmarelo fonteTitulo">AN?BURGUERIA</p>
+            <p class="small textoSecundario mb-0">R. da Dúvida - Barra Seca, São Francisco de Itabapoana - RJ</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
